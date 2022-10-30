@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/movies/presentation/screens/movie.screen.dart';
+import 'package:movies_app/core/services/services.locator.dart';
+import 'package:movies_app/movies/presentation/screens/movies.screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  ServicesLocator().init();
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   // This widget is the root of your application.
   @override
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MovieScreen(),
+      home: const MainMoviesScreen(),
     );
   }
 }
