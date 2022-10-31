@@ -1,0 +1,10 @@
+{
+    "editor.insertSpaces": true,
+    "editor.rulers": [150],
+    "dart.lineLength": 150,
+    "[dart]": {
+        "editor.rulers": [
+            150
+        ]
+    }
+}
