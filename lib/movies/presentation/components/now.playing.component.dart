@@ -7,6 +7,7 @@ import 'package:movies_app/core/utils/constants.dart';
 import 'package:movies_app/core/utils/enums.dart';
 import 'package:movies_app/movies/presentation/controller/movies.bloc.dart';
 import 'package:movies_app/movies/presentation/controller/movies.state.dart';
+import 'package:movies_app/movies/presentation/screens/movie_detail_screen.dart';
 
 class NowPlayingComponent extends StatelessWidget {
   const NowPlayingComponent({super.key});
@@ -14,8 +15,7 @@ class NowPlayingComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
-      buildWhen: (previous, current) =>
-          previous.nowPlayingState != current.nowPlayingState,
+      buildWhen: (previous, current) => previous.nowPlayingState != current.nowPlayingState,
       builder: (context, state) {
         switch (state.nowPlayingState) {
           case RequestState.loading:
@@ -44,7 +44,12 @@ class NowPlayingComponent extends StatelessWidget {
                     return GestureDetector(
                       key: const Key('openMovieMinimalDetail'),
                       onTap: () {
-                        /// TODO : NAVIGATE TO MOVIE DETAILS
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MovieDetailScreen(id: item.id),
+                          ),
+                        );
                       },
                       child: Stack(
                         children: [
@@ -68,8 +73,7 @@ class NowPlayingComponent extends StatelessWidget {
                             blendMode: BlendMode.dstIn,
                             child: CachedNetworkImage(
                               height: 560.0,
-                              imageUrl:
-                                  AppConstants.imageUrl(item.backDropPath),
+                              imageUrl: AppConstants.imageUrl(item.backDropPath),
                               fit: BoxFit.cover,
                             ),
                           ),
